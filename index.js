@@ -11,10 +11,15 @@ const app = express();
 //Configurar Cors
 app.use(cors());
 
+// Lectura y parseo del body (Middlewares)
+app.use( express.json() );
+
 //Conexion a la BD
 dbConnection();
 
-
+//Rutas
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
 
 
 app.listen( process.env.PORT, ()=> {
